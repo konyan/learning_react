@@ -1,10 +1,21 @@
 import { Link } from 'react-router-dom'
 import { CartItem } from '../components/CartItem'
 import { useCart } from '../context/CartContext'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function CartPage() {
   const { items, totals } = useCart()
   const itemList = Object.values(items)
+  const cartDescription = itemList.length
+    ? `Review ${totals.totalItems} indoor plants totaling $${totals.totalCost.toFixed(2)} before checkout.`
+    : 'Your Verdant Co. cart is empty. Continue shopping for modern houseplants and curated bundles.'
+
+  usePageMeta({
+    title: 'Shopping Cart',
+    path: '/cart',
+    description: cartDescription,
+    type: 'product',
+  })
 
   return (
     <section className="cart-page">

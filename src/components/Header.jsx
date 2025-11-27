@@ -5,16 +5,10 @@ export function Header() {
   const { totals } = useCart()
   const location = useLocation()
 
-  const links =
-    location.pathname === '/products'
-      ? [
-        { to: '/', label: 'Landing' },
-        { to: '/cart', label: 'Cart' },
-      ]
-      : [
-        { to: '/', label: 'Landing' },
-        { to: '/products', label: 'Shop' },
-      ]
+  const links = [
+    { to: '/', label: 'Landing' },
+    { to: '/products', label: 'Shop' },
+  ]
 
   return (
     <header className="site-header">
@@ -22,11 +16,19 @@ export function Header() {
         Verdant Co.
       </Link>
       <nav>
-        {links.map((link) => (
-          <Link key={link.to} to={link.to} className="nav-link">
-            {link.label}
-          </Link>
-        ))}
+        {links.map((link) => {
+          const isActive = location.pathname === link.to
+          return (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`nav-link${isActive ? ' nav-link-active' : ''}`}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {link.label}
+            </Link>
+          )
+        })}
       </nav>
       <Link to="/cart" className="cart-status" aria-label="Shopping cart">
         <span className="cart-icon" aria-hidden="true">

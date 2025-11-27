@@ -1,7 +1,15 @@
 import { ProductCard } from '../components/ProductCard'
 import { plants } from '../data/plants'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function ProductListing() {
+  usePageMeta({
+    title: 'Shop Indoor Houseplants',
+    path: '/products',
+    description:
+      'Browse Verdant Co. plant collections grouped by light level and style. Add resilient ferns, trailing pothos, and statement monsteras to your cart.',
+  })
+
   const grouped = plants.reduce((acc, plant) => {
     if (!acc[plant.category]) acc[plant.category] = []
     acc[plant.category].push(plant)

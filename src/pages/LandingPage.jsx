@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function LandingPage() {
+  usePageMeta({
+    title: 'Indoor Plants Delivered',
+    path: '/',
+    description:
+      'Meet Verdant Co. — your indoor plant studio delivering greenhouse-fresh greenery with personalized care guides.',
+  })
+
   return (
     <section className="landing">
       <div className="landing-content">
